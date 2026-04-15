@@ -67,49 +67,82 @@
           </div>
         </div>
 
-        <div class="project-grid">
-          <article class="project-card featured">
-            <p class="project-tag">Live Project</p>
-            <h3>Portfolio Website</h3>
-            <p>
-              A static portfolio website designed for GitHub Pages so it can stay live without needing a local machine or virtual machine to remain online.
-            </p>
-            <ul>
-              <li>Built with HTML and CSS</li>
-              <li>Hosted publicly on GitHub Pages</li>
-              <li>Designed to be easy to update over time</li>
-            </ul>
-            <div class="project-links">
-              <a href="https://digidevsoftware.github.io/portfolio/" target="_blank" rel="noopener">Live site</a>
-              <a href="https://github.com/digidevsoftware/portfolio" target="_blank" rel="noopener">GitHub repo</a>
-            </div>
-          </article>
+        <div class="project-carousel" id="project-carousel">
+          <button class="carousel-button carousel-button-left" type="button" aria-label="Previous project">
+            <span aria-hidden="true">‹</span>
+          </button>
 
-          <article class="project-card">
-            <p class="project-tag">In Progress</p>
-            <h3>Employee Shift &amp; Management System</h3>
-            <p>
-              A software project focused on managing employee shifts, improving scheduling workflows, and supporting day-to-day staff management through a practical system design.
-            </p>
-            <ul>
-              <li>Designed to organise employee shifts and scheduling</li>
-              <li>Focused on practical management workflows and usability</li>
-              <li>Being developed as a portfolio project to demonstrate software engineering skills</li>
-            </ul>
-          </article>
+          <div class="project-grid" id="project-grid">
+            <article class="project-card featured">
+              <p class="project-tag">Live Project</p>
+              <h3>Portfolio Website</h3>
+              <p>
+                A static portfolio website designed for GitHub Pages so it can stay live without needing a local machine or virtual machine to remain online.
+              </p>
+              <ul>
+                <li>Built with HTML and CSS</li>
+                <li>Hosted publicly on GitHub Pages</li>
+                <li>Designed to be easy to update over time</li>
+              </ul>
+              <div class="project-links">
+                <a href="https://digidevsoftware.github.io/portfolio/" target="_blank" rel="noopener">Live site</a>
+                <a href="https://github.com/digidevsoftware/portfolio" target="_blank" rel="noopener">GitHub repo</a>
+              </div>
+            </article>
 
-          <article class="project-card">
-            <p class="project-tag">Next Step</p>
-            <h3>More Projects Coming Soon</h3>
-            <p>
-              This section will grow as I add software engineering projects, coursework highlights, and practical builds that demonstrate programming and problem-solving ability.
-            </p>
-            <ul>
-              <li>Java-based work</li>
-              <li>Python and SQL projects</li>
-              <li>University and personal builds</li>
-            </ul>
-          </article>
+            <article class="project-card">
+              <p class="project-tag">In Progress</p>
+              <h3>Employee Shift &amp; Management System</h3>
+              <p>
+                A software project focused on managing employee shifts, improving scheduling workflows, and supporting day-to-day staff management through a practical system design.
+              </p>
+              <ul>
+                <li>Designed to organise employee shifts and scheduling</li>
+                <li>Focused on practical management workflows and usability</li>
+                <li>Being developed as a portfolio project to demonstrate software engineering skills</li>
+              </ul>
+              <div class="project-links">
+                <a href="https://github.com/digidevsoftware/BookSys-AppV1" target="_blank" rel="noopener">GitHub repo</a>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <p class="project-tag">Applied AI Tooling</p>
+              <h3>OpenClaw AI Assistant Environment</h3>
+              <p>
+                Configured and maintained an OpenClaw AI assistant environment on Ubuntu, including update management, integration checks, configuration fixes, and workflow customisation.
+              </p>
+              <ul>
+                <li>Applied it to practical tasks such as document generation and portfolio updates</li>
+                <li>Helped streamline project production through tool-assisted workflows and automation</li>
+                <li>Demonstrated Linux setup, command line usage, debugging, and applied AI tooling</li>
+              </ul>
+            </article>
+
+            <article class="project-card future-card">
+              <p class="project-tag">Future Plans</p>
+              <h3>More Projects in Development</h3>
+              <p>
+                This space is reserved for future builds that will expand the portfolio and show continued growth in software engineering, problem solving, and practical development work.
+              </p>
+              <ul>
+                <li>More Java-focused builds and software engineering projects</li>
+                <li>Python and database-backed applications with practical use cases</li>
+                <li>Additional coursework and personal projects refined for portfolio presentation</li>
+              </ul>
+            </article>
+          </div>
+
+          <button class="carousel-button carousel-button-right" type="button" aria-label="Next project">
+            <span aria-hidden="true">›</span>
+          </button>
+        </div>
+
+        <div class="projects-expand-wrap">
+          <button class="projects-expand-button" id="projects-expand-button" type="button" aria-expanded="false" title="View all projects">
+            <span class="projects-expand-label">View all projects</span>
+            <span class="projects-expand-icon" aria-hidden="true">⌄</span>
+          </button>
         </div>
       </section>
 
@@ -235,5 +268,45 @@
     <footer class="footer">
       <p>© Nicholas Rohrmoser — Built and hosted with GitHub Pages.</p>
     </footer>
+
+    <script>
+      const projectGrid = document.getElementById('project-grid');
+      const projectCarousel = document.getElementById('project-carousel');
+      const prevButton = document.querySelector('.carousel-button-left');
+      const nextButton = document.querySelector('.carousel-button-right');
+      const expandButton = document.getElementById('projects-expand-button');
+
+      if (projectGrid && prevButton && nextButton) {
+        const getScrollAmount = () => {
+          const firstCard = projectGrid.querySelector('.project-card');
+          if (!firstCard) return 320;
+          const gap = 16;
+          return firstCard.getBoundingClientRect().width + gap;
+        };
+
+        prevButton.addEventListener('click', () => {
+          if (projectGrid.classList.contains('expanded')) return;
+          projectGrid.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+        });
+
+        nextButton.addEventListener('click', () => {
+          if (projectGrid.classList.contains('expanded')) return;
+          projectGrid.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+        });
+      }
+
+      if (projectGrid && projectCarousel && expandButton) {
+        expandButton.addEventListener('click', () => {
+          const expanded = projectGrid.classList.toggle('expanded');
+          projectCarousel.classList.toggle('expanded', expanded);
+          expandButton.setAttribute('aria-expanded', String(expanded));
+          expandButton.title = expanded ? 'Hide all projects' : 'View all projects';
+          const label = expandButton.querySelector('.projects-expand-label');
+          if (label) {
+            label.textContent = expanded ? 'Hide all projects' : 'View all projects';
+          }
+        });
+      }
+    </script>
   </body>
 </html>
