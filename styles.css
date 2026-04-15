@@ -207,26 +207,25 @@ main {
   display: none;
 }
 
+.project-viewport {
+  overflow: hidden;
+  padding: 0.25rem 0 0.6rem;
+}
+
 .project-grid {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(300px, 360px);
+  grid-auto-columns: calc((100% - 2rem) / 3);
   gap: 1rem;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
   align-items: start;
-  padding: 0.25rem 0 0.6rem;
+  transform: translateX(0);
+  transition: transform 0.3s ease;
 }
 
 .project-grid.expanded {
   grid-auto-flow: row;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  overflow: visible;
-}
-
-.project-grid::-webkit-scrollbar {
-  display: none;
+  transform: none;
 }
 
 .carousel-button {
