@@ -276,12 +276,11 @@ main {
   color: var(--muted);
   cursor: pointer;
   padding: 0.35rem 0.75rem;
-  transition: color 0.15s ease, transform 0.15s ease;
+  transition: color 0.15s ease;
 }
 
 .projects-expand-button:hover {
   color: var(--accent);
-  transform: translateY(2px);
 }
 
 .projects-expand-button[aria-expanded="true"] .projects-expand-icon {
@@ -303,8 +302,14 @@ main {
 }
 
 .projects-expand-icon {
-  font-size: 2rem;
-  line-height: 1;
+  width: 26px;
+  height: 26px;
+  display: block;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
   transition: transform 0.2s ease;
 }
 
