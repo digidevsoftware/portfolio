@@ -235,19 +235,29 @@ main {
   border-radius: 999px;
   background: transparent;
   color: #5aa0d6;
-  font-size: 2.4rem;
-  line-height: 1;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+  padding: 0;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.carousel-icon {
+  width: 28px;
+  height: 28px;
+  display: block;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
 }
 
 .carousel-button:hover {
-  transform: scale(1.05);
   background: rgba(125, 211, 252, 0.08);
   color: var(--accent);
+  border-color: rgba(125, 211, 252, 0.7);
 }
 
 .projects-expand-wrap {
